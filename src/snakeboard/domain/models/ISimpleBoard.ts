@@ -1,0 +1,1 @@
+export type ISimpleBoard = 's'|'f'|'e'[][]
