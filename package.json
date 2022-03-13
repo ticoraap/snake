@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "homepage": "https://verbindingsfout.github.io/snake/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,6 +26,8 @@
     "test": "react-scripts test",
     "test:unit": "cypress open-ct",
     "test:e2e": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,6 +51,7 @@
   "devDependencies": {
     "@cypress/react": "^5.12.4",
     "@cypress/webpack-dev-server": "^1.8.2",
-    "cypress": "^9.5.1"
+    "cypress": "^9.5.1",
+    "gh-pages": "^3.2.3"
   }
 }
