@@ -43,6 +43,7 @@ const StyledSnakeBoard = styled.div`
     flex-direction: row;
     height: 100vh;
     aspect-ratio: 1;
+    background-color: #e7e7e7;
 `
 
 const StyledSnakeColumn = styled.div`
@@ -51,10 +52,15 @@ const StyledSnakeColumn = styled.div`
     flex-grow: 1;
 `
 
-const StyledSnakeBlock = styled.div<{ dead: boolean, directions: Direction[] }>`
+const StyledTile = styled.div`
+    flex-grow: 1;
+    margin: 4px;
+`
+
+const StyledSnakeBlock = styled(StyledTile)<{ dead: boolean, directions: Direction[] }>`
     flex-grow: 1;
     background-color: ${(props) => props.dead ? 'red' : 'black'};
-    border: 1px solid #eeeeee;
+    /* border: 1px solid black;
     ${(props) => props.directions.map(direction => {
         switch (direction) {
             case Direction.Left:
@@ -69,17 +75,14 @@ const StyledSnakeBlock = styled.div<{ dead: boolean, directions: Direction[] }>`
             default:
                 return '';
         }
-    })}
+    })} */
 
 `
 
-const StyledFoodBlock = styled.div`
-    flex-grow: 1;
+const StyledFoodBlock = styled(StyledTile)`
     background-color: green;
-    border: 1px solid #eeeeee;
 `
 
-const StyledEmpty = styled.div`
-    flex-grow: 1;
-    border: 1px solid #eeeeee;
+const StyledEmpty = styled(StyledTile)`
+
 `
