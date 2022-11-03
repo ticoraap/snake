@@ -2,8 +2,6 @@ import styled from "@emotion/styled"
 import { Direction } from "../domain/constants/Direction"
 import { useSnake } from "../domain/useSnake"
 
-
-
 export function SnakeGame() {
     const [board, dead] = useSnake()
     return (
@@ -54,13 +52,16 @@ const StyledSnakeColumn = styled.div`
 
 const StyledTile = styled.div`
     flex-grow: 1;
-    margin: 4px;
+    /* margin: 4px; */
 `
 
 const StyledSnakeBlock = styled(StyledTile)<{ dead: boolean, directions: Direction[] }>`
     flex-grow: 1;
     background-color: ${(props) => props.dead ? 'red' : 'black'};
-    /* border: 1px solid black;
+    border-left: 3px solid white;
+    border-right: 3px solid white;
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
     ${(props) => props.directions.map(direction => {
         switch (direction) {
             case Direction.Left:
@@ -75,7 +76,7 @@ const StyledSnakeBlock = styled(StyledTile)<{ dead: boolean, directions: Directi
             default:
                 return '';
         }
-    })} */
+    })}
 
 `
 

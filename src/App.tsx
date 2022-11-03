@@ -1,10 +1,18 @@
 import React from 'react';
-import { SnakeGame } from './snakeboard/ui/SnakeGame';
+import { Modal } from './modal/Modal';
+import SettingsProvider from './snakeboard/domain/settingsStore';
 
+import { SnakeGame } from './snakeboard/ui/SnakeGame';
 
 function App() {
     return (
-        <SnakeGame />
+        <SettingsProvider>
+            <SnakeGame />
+            <Modal>
+                <h1>I'm a snake</h1>
+                <h2>Game configuration</h2>
+            </Modal>
+        </SettingsProvider>
     );
 }
 

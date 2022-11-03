@@ -10,16 +10,18 @@ import { addFood } from "./addFood";
 import { getNextTile } from "./getNextTile";
 import { useOnKeyDown } from "./useOnKeyDown";
 import { IBoard } from "./models/IBoard";
+import { useSettingsStore } from "./settingsStore";
 
 
 export function useSnake(): [IBoard, boolean] {
 
     const [board, setBoard] = useState(createBoard());
-    const [paused, setPaused] = useState(true)
+
     const [dead, setDead] = useState(false)
+    const [isModalVisible, setModalVisible] = useSettingsStore().modal
 
 
-    useOnKeyDown([" "], () => setPaused(!paused));
+    useOnKeyDown([" "], () => setModalVisible(!isModalVisible));
     useOnKeyDown(["w", "ArrowUp"], () => setDirection(Direction.Up));
     useOnKeyDown(["a", "ArrowLeft"], () => setDirection(Direction.Left));
     useOnKeyDown(["s", "ArrowDown"], () => setDirection(Direction.Down));
@@ -46,8 +48,8 @@ export function useSnake(): [IBoard, boolean] {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            if (!paused)
-                iterate()
+            if (!isModalVisible)
+            iterate()
         }, GAME_TICK_SPEED);
 
         return () => {

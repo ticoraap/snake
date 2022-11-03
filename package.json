@@ -24,8 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:unit": "cypress open-ct",
-    "test:e2e": "react-scripts test",
+    "test:cypress": "cypress open-ct",
+    "test:jest": "react-scripts test",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"

@@ -2,9 +2,10 @@ import React from 'react';
 import { mount } from '@cypress/react';
 import { GAME_TICK_SPEED } from '../domain/constants/GameTickSpeed';
 import { SnakeGame } from './SnakeGame';
+import SettingsProvider from '../domain/settingsStore';
 
 it('starts the game with a default board size of 10 by 10', () => {
-    mount(<SnakeGame />);
+    mount(<SettingsProvider><SnakeGame /></SettingsProvider>);
 
     cy.findAllByLabelText(/^column [0-9]/i).should('have.length', 10)
     cy.findAllByLabelText(/^column [0-9]/i).each((row) => {
@@ -13,7 +14,7 @@ it('starts the game with a default board size of 10 by 10', () => {
 });
 
 it('starts the game with the snake in the center of the board', () => {
-    mount(<SnakeGame />);
+    mount(<SettingsProvider><SnakeGame /></SettingsProvider>);
 
     cy.findByLabelText(/snake: column 5 row 5/i).should('exist');
 });
@@ -21,7 +22,7 @@ it('starts the game with the snake in the center of the board', () => {
 it('moves the snake one tile in the default direction after one game tick', () => {
     cy.clock();
 
-    mount(<SnakeGame />);
+    mount(<SettingsProvider><SnakeGame /></SettingsProvider>);
     cy.get('body').type(' ');
     cy.findByLabelText(/snake: column 5 row 5/i).should('exist');
     cy.tick(GAME_TICK_SPEED);
@@ -31,7 +32,7 @@ it('moves the snake one tile in the default direction after one game tick', () =
 it('moves the snake in a circle when the right, down, left and up arrows are pressed ', () => {
     cy.clock();
 
-    mount(<SnakeGame />);
+    mount(<SettingsProvider><SnakeGame /></SettingsProvider>);
     cy.get('body').type(' ');
 
     cy.findByLabelText(/snake: column 5 row 5/i).should('exist');
@@ -58,7 +59,7 @@ it('displays food on a random location');
 it('grows the snake one tile when food is eaten by the snake', () => {
     cy.clock();
 
-    mount(<SnakeGame />);
+    mount(<SettingsProvider><SnakeGame /></SettingsProvider>);
     cy.get('body').type(' ');
 
     cy.findByLabelText(/snake: column 5 row 5/i).should('exist');
